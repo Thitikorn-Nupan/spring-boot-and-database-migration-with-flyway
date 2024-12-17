@@ -1,0 +1,11 @@
+*** Default path ที่ Flyway จะอ่านไฟล์ SQL Script จะอยู่ที่ src/main/resource/db/migration
+*** The name sql have to follow format V<เลขเวอร์ชัน>__<ชื่อเวอร์ชัน>.sql
+*** run follows version (V001 -> V00n)
+
+migration files it works as sql script.
+but it's working good for team
+
+
+it smarts it know if created table success it won create again
+
+note when you update database on api you have to update on migration file again.

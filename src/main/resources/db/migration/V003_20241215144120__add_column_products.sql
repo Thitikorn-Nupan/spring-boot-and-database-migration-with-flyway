@@ -1,0 +1,1 @@
+ALTER TABLE `products` ADD COLUMN `active` BOOL NOT NULL;
