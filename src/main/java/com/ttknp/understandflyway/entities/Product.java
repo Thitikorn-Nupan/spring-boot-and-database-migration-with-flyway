@@ -8,11 +8,9 @@ import lombok.*;
 // I got bug @Data it's not generated getter setter *** Error From IDE ?? *** ToString() still work
 // fix by run on cmd or add version on pom file
 @Data
-// @Getter
-// @Setter
 @NoArgsConstructor
 public class Product {
-   /*
+    /*
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
@@ -32,7 +30,8 @@ public class Product {
     private String sku;
     @Getter
     @Setter
-    private Boolean active;*/
+    private Boolean active;
+    */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

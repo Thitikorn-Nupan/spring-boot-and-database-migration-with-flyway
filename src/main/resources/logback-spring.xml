@@ -1,15 +1,16 @@
+<!--
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <!-- Setting up log path and log file name -->
-    <!--<property name="LOG_PATH" value="B:/sp-log/" />
-    <property name="LOG_FILE_NAME" value="one-to-many-h2" />-->
-    <!-- Setting up logging pattern for console logging
+    &lt;!&ndash; Setting up log path and log file name &ndash;&gt;
+    &lt;!&ndash;<property name="LOG_PATH" value="B:/sp-log/" />
+    <property name="LOG_FILE_NAME" value="one-to-many-h2" />&ndash;&gt;
+    &lt;!&ndash; Setting up logging pattern for console logging
          We can set color text logging !
          like
                                 (color follow the level)       (yellow)
          2023-10-28 09:15:57,510        INFO            [http-nio-8080-exec-1] : Completed initialization in 2 ms
-    -->
+    &ndash;&gt;
 
 
     <appender name="ConsoleOutput"
@@ -22,8 +23,8 @@
     </appender>
 
 
-    <!-- Setting the filename and logging pattern for log file -->
-    <!--<appender name="LogFile"
+    &lt;!&ndash; Setting the filename and logging pattern for log file &ndash;&gt;
+    &lt;!&ndash;<appender name="LogFile"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_PATH}/${LOG_FILE_NAME}.log</file>
         <encoder
@@ -43,17 +44,28 @@
                 <maxFileSize>10MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
-    </appender>-->
+    </appender>&ndash;&gt;
 
 
-    <!-- Logging at INFO level -->
+    &lt;!&ndash; Logging at INFO level &ndash;&gt;
     <root level="info">
         <appender-ref ref="ConsoleOutput" />
     </root>
 
-    <!-- Logging at TRACE level -->
+    &lt;!&ndash; Logging at TRACE level &ndash;&gt;
     <logger name="com.log" level="trace" additivity="false">
         <appender-ref ref="ConsoleOutput" />
     </logger>
 
+</configuration>-->
+<configuration>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- looks like => 22:39:23.992 [main] DEBUG c.t.server.controller.RouteControl : Hello World -->
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} : %msg%n</pattern>
+        </encoder>
+    </appender>
+    <root level="INFO,DEBUG">
+        <appender-ref ref="CONSOLE"/>
+    </root>
 </configuration>

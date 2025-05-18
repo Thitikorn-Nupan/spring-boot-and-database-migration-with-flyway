@@ -13,7 +13,7 @@ import java.util.List;
 
 
 public class RequestClient {
-    /*
+    /**
       RestTemplate is a class within the Spring framework we will understand how to use RestTemplate for invoking REST APIs of different shapes.
       Once the above spring application is up and running,
       test all Spring rest APIs and logging results with the below Spring rest client
@@ -64,7 +64,7 @@ public class RequestClient {
         // Use HttpEntity to wrap the request object.
         httpEntity = new HttpEntity<>(product); // for request to server
         // exchange() is executes a specified HTTP method, such as GET, POST, PUT, etc, and returns a ResponseEntity containing both the HTTP status code and the resource as an object.
-        responseEntity = RESTTEMPLATE.exchange(ENDPOINT_PRODUCTS+"/create" , HttpMethod.POST , httpEntity , String.class);
+        responseEntity = RESTTEMPLATE.exchange(ENDPOINT_PRODUCTS+"/common/create" , HttpMethod.POST , httpEntity , String.class);
         log(responseEntity);
     }
 
@@ -79,7 +79,7 @@ public class RequestClient {
         product.setQuantity(1);
         product.setPrice(1.1);
         httpEntity = new HttpEntity<>(product);
-        responseEntity = RESTTEMPLATE.exchange(ENDPOINT_PRODUCTS+"/update?id=6",HttpMethod.PUT,httpEntity,String.class);
+        responseEntity = RESTTEMPLATE.exchange(ENDPOINT_PRODUCTS+"/common/update?id=6",HttpMethod.PUT,httpEntity,String.class);
         log(responseEntity);
     }
 
@@ -88,7 +88,7 @@ public class RequestClient {
         // params.put("id", "1"); // key id value 1 for path read/{id}
         // RESTTEMPLATE.delete(ENDPOINT_PRODUCTS+"/delete?id=6");
         // another way
-        responseEntity = RESTTEMPLATE.exchange(ENDPOINT_PRODUCTS+"/delete?id=6" , HttpMethod.DELETE , null , String.class);
+        responseEntity = RESTTEMPLATE.exchange(ENDPOINT_PRODUCTS+"/common/delete?id=6" , HttpMethod.DELETE , null , String.class);
         log(responseEntity);
     }
 
