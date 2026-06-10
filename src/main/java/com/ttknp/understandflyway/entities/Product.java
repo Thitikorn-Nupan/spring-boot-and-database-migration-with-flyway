@@ -10,7 +10,7 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 public class Product {
-    /*
+    /**
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
@@ -40,5 +40,4 @@ public class Product {
     private Integer quantity;
     private String sku;
     private Boolean active;
-
 }

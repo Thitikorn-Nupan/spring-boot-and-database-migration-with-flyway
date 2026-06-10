@@ -1,11 +1,8 @@
 package com.ttknp.understandflyway.services.common;
 
-
-import com.ttknp.understandflyway.entities.User;
-
 import java.util.Optional;
 
-public interface ServiceCommon <T> {
+public interface CommonService<T> {
     Iterable<T> retrieveAllModels();
     <U> Optional<T> retrieveModel(U key);
     Boolean createModel(T model);

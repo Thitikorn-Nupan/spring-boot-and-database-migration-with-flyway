@@ -33,3 +33,4 @@ build/
 .vscode/
 
 info
+flyway_desktop_manager

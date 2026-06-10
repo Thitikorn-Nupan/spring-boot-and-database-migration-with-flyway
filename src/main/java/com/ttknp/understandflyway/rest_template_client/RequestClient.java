@@ -1,16 +1,12 @@
 package com.ttknp.understandflyway.rest_template_client;
 
-
 import com.ttknp.understandflyway.entities.Product;
 import lombok.NonNull;
-import org.antlr.v4.runtime.misc.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.List;
-
 
 public class RequestClient {
     /**
@@ -20,35 +16,30 @@ public class RequestClient {
       (Making an HTTP GET Request to Obtain the JSON Response)
       to honestly we can use them(this class) instead Postman! ???
     * */
-    private final RestTemplate RESTTEMPLATE;
+    private final RestTemplate restTemplate;
+    private final String endpointProducts = "http://localhost:8080/api/product";
+    private final String endpointUsers = "http://localhost:8080/api/user";
+    private static final Logger log = LoggerFactory.getLogger(RequestClient.class);
     private HttpHeaders headers;
     private HttpEntity httpEntity;
     private ResponseEntity responseEntity;
-    private final String ENDPOINT_PRODUCTS= "http://localhost:8080/api/product";
-    private final String ENDPOINT_USERS= "http://localhost:8080/api/user";
-    private final Logger logger;
 
     public RequestClient() {
-        RESTTEMPLATE = new RestTemplate();
-        logger = LoggerFactory.getLogger(RequestClient.class);
+        restTemplate = new RestTemplate();
     }
 
     private void readsUsers () {
-        responseEntity = RESTTEMPLATE.exchange(ENDPOINT_USERS+"/reads" , HttpMethod.GET , null , String.class);
+        responseEntity = restTemplate.exchange(endpointUsers +"/reads" , HttpMethod.GET , null , String.class);
         log(responseEntity);
     }
-
-
 
     private void readsProducts () {
-        responseEntity = RESTTEMPLATE.exchange(ENDPOINT_PRODUCTS+"/reads" , HttpMethod.GET , null , String.class);
+        responseEntity = restTemplate.exchange(endpointProducts +"/reads" , HttpMethod.GET , null , String.class);
         log(responseEntity);
     }
 
-
-
     private void readProduct () {
-            responseEntity = RESTTEMPLATE.exchange(ENDPOINT_PRODUCTS+"/read?id=6" , HttpMethod.GET , null , String.class);
+            responseEntity = restTemplate.exchange(endpointProducts +"/read?id=6" , HttpMethod.GET , null , String.class);
         log(responseEntity);
     }
 
@@ -64,7 +55,7 @@ public class RequestClient {
         // Use HttpEntity to wrap the request object.
         httpEntity = new HttpEntity<>(product); // for request to server
         // exchange() is executes a specified HTTP method, such as GET, POST, PUT, etc, and returns a ResponseEntity containing both the HTTP status code and the resource as an object.
-        responseEntity = RESTTEMPLATE.exchange(ENDPOINT_PRODUCTS+"/common/create" , HttpMethod.POST , httpEntity , String.class);
+        responseEntity = restTemplate.exchange(endpointProducts +"/common/create" , HttpMethod.POST , httpEntity , String.class);
         log(responseEntity);
     }
 
@@ -79,25 +70,19 @@ public class RequestClient {
         product.setQuantity(1);
         product.setPrice(1.1);
         httpEntity = new HttpEntity<>(product);
-        responseEntity = RESTTEMPLATE.exchange(ENDPOINT_PRODUCTS+"/common/update?id=6",HttpMethod.PUT,httpEntity,String.class);
+        responseEntity = restTemplate.exchange(endpointProducts +"/common/update?id=6",HttpMethod.PUT,httpEntity,String.class);
         log(responseEntity);
     }
 
     private void deleteProduct() {
-        // Map< String, String > params = new HashMap< String, String >();
-        // params.put("id", "1"); // key id value 1 for path read/{id}
-        // RESTTEMPLATE.delete(ENDPOINT_PRODUCTS+"/delete?id=6");
-        // another way
-        responseEntity = RESTTEMPLATE.exchange(ENDPOINT_PRODUCTS+"/common/delete?id=6" , HttpMethod.DELETE , null , String.class);
+        responseEntity = restTemplate.exchange(endpointProducts +"/common/delete?id=6" , HttpMethod.DELETE , null , String.class);
         log(responseEntity);
     }
 
-
     private void log(@NonNull ResponseEntity responseEntity) {
-        logger.warn("responseEntity {}",responseEntity);
-        logger.warn("responseEntity.getBody() {}",responseEntity.getBody());
+        log.warn("responseEntity {}",responseEntity);
+        log.warn("responseEntity.getBody() {}",responseEntity.getBody());
     }
-
 
     public static void main(String[] args) {
         RequestClient requestClient = new RequestClient();

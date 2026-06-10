@@ -3,14 +3,16 @@ package com.ttknp.understandflyway.dto;
 import com.ttknp.understandflyway.entities.Product;
 import com.ttknp.understandflyway.repositories.ProductRepository;
 import com.ttknp.understandflyway.services.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
 @Service
 public class ProductDTO implements ProductService {
 
+    private static final Logger log = LoggerFactory.getLogger(ProductDTO.class);
     private final ProductRepository productRepository;
 
     @Autowired
@@ -24,7 +26,7 @@ public class ProductDTO implements ProductService {
             return null;
         } else {
             Iterable<Product> products = productRepository.findAll();
-            System.out.println(products);
+            log.debug("products => {}",products);
             return products;
         }
     }
@@ -33,7 +35,7 @@ public class ProductDTO implements ProductService {
     public Optional<Product> retrieveProduct(long id) {
         Optional<Product> product;
         product = productRepository.findById(id);
-        System.out.println(product);
+        log.debug("product => {}",product);
         return product;
     }
 

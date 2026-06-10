@@ -1,26 +1,21 @@
 package com.ttknp.understandflyway.dto;
 
 import com.ttknp.understandflyway.entities.Product;
-import com.ttknp.understandflyway.entities.User;
 import com.ttknp.understandflyway.repositories.ProductRepository;
-// import com.ttknp.understandflyway.repositories.ProductRepositoryCommon;
-// import com.ttknp.understandflyway.repositories.common.RepoCommon;
-import com.ttknp.understandflyway.services.common.ServiceCommon;
+import com.ttknp.understandflyway.services.common.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
 @Service
-public class ProductDTOCommon implements ServiceCommon<Product> {
+public class ProductDTOCommonService implements CommonService<Product> {
 
     private final ProductRepository productRepositoryCommon;
 
     @Autowired
-    public ProductDTOCommon(ProductRepository productRepositoryCommon) {
+    public ProductDTOCommonService(ProductRepository productRepositoryCommon) {
         this.productRepositoryCommon = productRepositoryCommon;
     }
-
 
     @Override
     public Iterable<Product> retrieveAllModels() {
